@@ -1,0 +1,33 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Portfolio Website for Dinh Nguyen Pham",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npham49/portfolio-website.git"
+  },
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "sanity"
+  ],
+  "author": "Brian D Pham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/npham49/portfolio-website/issues"
+  },
+  "homepage": "https://github.com/npham49/portfolio-website#readme",
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "3.1.1"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
