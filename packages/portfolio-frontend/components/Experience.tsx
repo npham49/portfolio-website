@@ -23,12 +23,15 @@ const Experience = ({ experiences, skills }: any) => {
   }, []);
   return (
     <div id="experience" className="w-full mt-20">
-      <h3 className="text-2xl font-bold tracking-tight text-stone-200 sm:text-3xl">
+      <h3 className="text-2xl font-bold tracking-tight text-stone-200 sm:text-3xl lg:hidden">
         Experience
       </h3>
       <div className="w-full mt-4">
         {experiences.map((experience: any) => (
-          <div key={experience._id} className="w-full">
+          <div
+            key={experience._id}
+            className="w-full hover:border-stone-600 hover:border hover:bg-stone-900 hover:p-[7px] p-2 rounded-md"
+          >
             <div className="flex items-start justify-between">
               <div className="w-1/3 pr-2 text-sm text-stone-400">
                 {month[new Date(experience.startDate).getUTCMonth()]}{" "}
@@ -48,6 +51,25 @@ const Experience = ({ experiences, skills }: any) => {
                 </p>
                 <div className="mt-2">
                   <PortableTextComponent value={experience.description} />
+                  <div>
+                    {experience.skills.map((skill: any) => (
+                      <a
+                        key={skill._key}
+                        href={
+                          skills.find((s: any) => s._id === skill._ref).skillUrl
+                        }
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        <span className="inline-block px-3 py-1 mr-2 mt-2 text-xs font-medium leading-5 text-stone-100 bg-stone-600 rounded-full hover:bg-stone-100 hover:text-stone-600 transition">
+                          {
+                            skills.find((s: any) => s._id === skill._ref)
+                              .skillName
+                          }
+                        </span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

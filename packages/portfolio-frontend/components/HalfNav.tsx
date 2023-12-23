@@ -44,7 +44,7 @@ const HalfNav = () => {
         <li className="mr-5 text-xs">
           <a
             className="block hover:text-stone-200"
-            href="https://github.com/bchiang7"
+            href="https://github.com/npham49"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="GitHub (opens in a new tab)"
@@ -64,7 +64,7 @@ const HalfNav = () => {
         <li className="mr-5 text-xs">
           <a
             className="block hover:text-stone-200"
-            href="https://instagram.com/bchiang7"
+            href="https://www.instagram.com/n.pham49/"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Instagram (opens in a new tab)"
@@ -84,7 +84,7 @@ const HalfNav = () => {
         <li className="mr-5 text-xs">
           <a
             className="block hover:text-stone-200"
-            href="https://www.linkedin.com/in/bchiang7/"
+            href="https://www.linkedin.com/in/dinhnguyenpham/"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="LinkedIn (opens in a new tab)"
