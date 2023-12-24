@@ -1,23 +1,35 @@
 "use client";
-import React from "react";
-import imageUrlBuilder from "@sanity/image-url";
-import client from "@/config/client";
-
-import PortableTextComponent from "./common/PortableText";
+import React, { useContext, useRef } from "react";
 import Image from "next/image";
+import imageUrlBuilder from "@sanity/image-url";
+
+import client from "@/config/client";
+import PortableTextComponent from "./common/PortableText";
+import { CurrentSectionContext } from "@/context/currentSection";
 
 // Get a pre-configured url-builder from your sanity client
 const builder = imageUrlBuilder(client);
 
 const About = ({ about }: any) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // @ts-ignore
+  const { currentSection, setCurrentSection } = useContext(
+    CurrentSectionContext,
+  );
   function urlFor(source: any) {
     return builder.image(source);
   }
   React.useEffect(() => {
-    console.log(about);
+    if (ref.current?.clientHeight) {
+      setCurrentSection((prev: any) => ({
+        ...prev,
+        about: ref.current?.clientHeight,
+      }));
+    }
   }, []);
   return (
-    <div id="about">
+    <div ref={ref} id="about">
       <h3 className="text-2xl font-bold tracking-tight text-stone-200 sm:text-3xl lg:hidden">
         About
       </h3>

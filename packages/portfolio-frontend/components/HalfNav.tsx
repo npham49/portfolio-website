@@ -1,6 +1,42 @@
-import React from "react";
+"use client";
+import { useContext, useEffect, useState } from "react";
+import { CurrentSectionContext } from "@/context/currentSection";
 
-const HalfNav = () => {
+const tailwindClassesCurrent =
+  "group-hover:w-8 group-hover:bg-stone-600 w-16 bg-stone-200 group-focus-visible:w-8 group-focus-visible:bg-stone-600";
+const tailwindClassesNotCurrent =
+  "w-8 bg-stone-600 group-hover:w-16 group-hover:bg-stone-200 group-focus-visible:w-16 group-focus-visible:bg-stone-200";
+const tailwindTextClassesCurrent =
+  "text-stone-200 group-hover:text-stone-500 group-focus-visible:text-stone-500";
+const tailwindTextClassesNotCurrent =
+  "text-stone-500 group-hover:text-stone-200 group-focus-visible:text-stone-200";
+
+const HalfNav = ({ currentScroll }: any) => {
+  const [currentPageSection, setCurrentPageSection] = useState("about");
+  // @ts-ignore
+  const { currentSection } = useContext(CurrentSectionContext);
+  useEffect(() => {
+    // get the current page section by sectracting the scroll position from the current section
+    // if the current section is less than the current scroll position, then the current page section is the next section
+    // if the current section is greater than the current scroll position, then the current page section is the current section
+    switch (true) {
+      case currentScroll < currentSection.about && currentScroll > 0:
+        setCurrentPageSection("about");
+        break;
+      case currentScroll > currentSection.about &&
+        currentScroll < currentSection.about + currentSection.experience:
+        setCurrentPageSection("experiences");
+        break;
+      case currentScroll > currentSection.about + currentSection.experience &&
+        currentScroll <
+          currentSection.about +
+            currentSection.experience +
+            currentSection.projects:
+        setCurrentPageSection("projects");
+        break;
+    }
+    console.log(currentPageSection, currentScroll, currentSection);
+  }, [currentScroll]);
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
       <div>
@@ -15,24 +51,60 @@ const HalfNav = () => {
           <ul className="mt-16 w-max">
             <li>
               <a className="group flex items-center py-3 active" href="#about">
-                <span className="nav-indicator mr-4 h-px w-8 bg-stone-600 transition-all group-hover:w-16 group-hover:bg-stone-200 group-focus-visible:w-16 group-focus-visible:bg-stone-200 motion-reduce:transition-none"></span>
-                <span className="nav-text text-xs font-bold uppercase tracking-widest text-stone-500 group-hover:text-stone-200 group-focus-visible:text-stone-200">
+                <span
+                  className={`nav-indicator mr-4 h-px ${
+                    currentPageSection === "about"
+                      ? tailwindClassesCurrent
+                      : tailwindClassesNotCurrent
+                  } transition-all  motion-reduce:transition-none`}
+                ></span>
+                <span
+                  className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                    currentPageSection === "about"
+                      ? tailwindTextClassesCurrent
+                      : tailwindTextClassesNotCurrent
+                  }`}
+                >
                   About
                 </span>
               </a>
             </li>
             <li>
               <a className="group flex items-center py-3" href="#experience">
-                <span className="nav-indicator mr-4 h-px w-8 bg-stone-600 transition-all group-hover:w-16 group-hover:bg-stone-200 group-focus-visible:w-16 group-focus-visible:bg-stone-200 motion-reduce:transition-none"></span>
-                <span className="nav-text text-xs font-bold uppercase tracking-widest text-stone-500 group-hover:text-stone-200 group-focus-visible:text-stone-200">
+                <span
+                  className={`nav-indicator mr-4 h-px ${
+                    currentPageSection === "experiences"
+                      ? tailwindClassesCurrent
+                      : tailwindClassesNotCurrent
+                  } transition-all  motion-reduce:transition-none`}
+                ></span>
+                <span
+                  className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                    currentPageSection === "experiences"
+                      ? tailwindTextClassesCurrent
+                      : tailwindTextClassesNotCurrent
+                  }`}
+                >
                   Experience
                 </span>
               </a>
             </li>
             <li>
               <a className="group flex items-center py-3" href="#projects">
-                <span className="nav-indicator mr-4 h-px w-8 bg-stone-600 transition-all group-hover:w-16 group-hover:bg-stone-200 group-focus-visible:w-16 group-focus-visible:bg-stone-200 motion-reduce:transition-none"></span>
-                <span className="nav-text text-xs font-bold uppercase tracking-widest text-stone-500 group-hover:text-stone-200 group-focus-visible:text-stone-200">
+                <span
+                  className={`nav-indicator mr-4 h-px ${
+                    currentPageSection === "projects"
+                      ? tailwindClassesCurrent
+                      : tailwindClassesNotCurrent
+                  } transition-all  motion-reduce:transition-none`}
+                ></span>
+                <span
+                  className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                    currentPageSection === "projects"
+                      ? tailwindTextClassesCurrent
+                      : tailwindTextClassesNotCurrent
+                  }`}
+                >
                   Projects
                 </span>
               </a>

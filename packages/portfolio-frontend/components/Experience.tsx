@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useRef, useContext } from "react";
 import PortableTextComponent from "./common/PortableText";
+import { CurrentSectionContext } from "@/context/currentSection";
 
 const Experience = ({ experiences, skills }: any) => {
   const month = [
@@ -17,12 +18,22 @@ const Experience = ({ experiences, skills }: any) => {
     "Nov",
     "Dec",
   ];
+  const ref = useRef<HTMLDivElement>(null);
+  // @ts-ignore
+  const { currentSection, setCurrentSection } = useContext(
+    CurrentSectionContext,
+  );
   React.useEffect(() => {
-    console.log(experiences);
-    console.log(skills);
+    console.log(ref.current?.clientHeight);
+    if (ref.current?.clientHeight) {
+      setCurrentSection((prev: any) => ({
+        ...prev,
+        experience: ref.current?.clientHeight,
+      }));
+    }
   }, []);
   return (
-    <div id="experience" className="w-full mt-20">
+    <div ref={ref} id="experience" className="w-full mt-20">
       <h3 className="text-2xl font-bold tracking-tight text-stone-200 sm:text-3xl lg:hidden">
         Experience
       </h3>
