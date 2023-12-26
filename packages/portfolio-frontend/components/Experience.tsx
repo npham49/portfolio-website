@@ -20,9 +20,7 @@ const Experience = ({ experiences, skills }: any) => {
   ];
   const ref = useRef<HTMLDivElement>(null);
   // @ts-ignore
-  const { currentSection, setCurrentSection } = useContext(
-    CurrentSectionContext,
-  );
+  const { setCurrentSection } = useContext(CurrentSectionContext);
   React.useEffect(() => {
     console.log(ref.current?.clientHeight);
     if (ref.current?.clientHeight) {

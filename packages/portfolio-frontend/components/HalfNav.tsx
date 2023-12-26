@@ -1,20 +1,30 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { CurrentSectionContext } from "@/context/currentSection";
 
-const tailwindClassesCurrent =
-  "group-hover:w-8 group-hover:bg-stone-600 w-16 bg-stone-200 group-focus-visible:w-8 group-focus-visible:bg-stone-600";
+const tailwindClassesCurrent = " w-14 bg-stone-200";
 const tailwindClassesNotCurrent =
-  "w-8 bg-stone-600 group-hover:w-16 group-hover:bg-stone-200 group-focus-visible:w-16 group-focus-visible:bg-stone-200";
+  "w-8 bg-stone-600 group-hover:w-14 group-hover:bg-stone-200 group-focus-visible:w-14 group-focus-visible:bg-stone-200";
 const tailwindTextClassesCurrent =
-  "text-stone-200 group-hover:text-stone-500 group-focus-visible:text-stone-500";
+  "text-stone-200 group-focus-visible:text-stone-500";
 const tailwindTextClassesNotCurrent =
   "text-stone-500 group-hover:text-stone-200 group-focus-visible:text-stone-200";
 
 const HalfNav = ({ currentScroll }: any) => {
   const [currentPageSection, setCurrentPageSection] = useState("about");
+  const ref = useRef<HTMLDivElement>(null);
   // @ts-ignore
-  const { currentSection } = useContext(CurrentSectionContext);
+  const { setCurrentSection, currentSection } = useContext(
+    CurrentSectionContext,
+  );
+  useEffect(() => {
+    if (ref.current?.clientHeight) {
+      setCurrentSection((prev: any) => ({
+        ...prev,
+        contact: ref.current?.clientHeight,
+      }));
+    }
+  }, [ref.current?.clientHeight]);
   useEffect(() => {
     // get the current page section by sectracting the scroll position from the current section
     // if the current section is less than the current scroll position, then the current page section is the next section
@@ -35,10 +45,12 @@ const HalfNav = ({ currentScroll }: any) => {
         setCurrentPageSection("projects");
         break;
     }
-    console.log(currentPageSection, currentScroll, currentSection);
   }, [currentScroll]);
   return (
-    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
+    <header
+      ref={ref}
+      className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24"
+    >
       <div>
         <h1 className="text-4xl font-bold tracking-tight text-stone-200 sm:text-5xl">
           <a href="/">Dinh Nguyen (Brian) Pham</a>
@@ -46,7 +58,9 @@ const HalfNav = ({ currentScroll }: any) => {
         <h2 className="mt-3 text-lg font-medium tracking-tight text-stone-200 sm:text-xl">
           Full Stack Developer
         </h2>
-        <p className="mt-4 max-w-xs leading-normal">I</p>
+        <p className="mt-2 max-w-xs leading-normal">
+          Developed and maintained diverse projects in tech innovation.
+        </p>
         <nav className="nav hidden lg:block" aria-label="In-page jump links">
           <ul className="mt-16 w-max">
             <li>
@@ -58,6 +72,18 @@ const HalfNav = ({ currentScroll }: any) => {
                       : tailwindClassesNotCurrent
                   } transition-all  motion-reduce:transition-none`}
                 ></span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`${
+                    currentPageSection === "about"
+                      ? "w-6 mr-2"
+                      : "group-hover:w-6 group-hover:mr-2 w-0 m-0"
+                  } transition-all h-6`}
+                  fill="currentColor"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                </svg>
                 <span
                   className={`nav-text text-xs font-bold uppercase tracking-widest ${
                     currentPageSection === "about"
@@ -78,6 +104,18 @@ const HalfNav = ({ currentScroll }: any) => {
                       : tailwindClassesNotCurrent
                   } transition-all  motion-reduce:transition-none`}
                 ></span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`${
+                    currentPageSection === "experiences"
+                      ? "w-6 mr-2"
+                      : "group-hover:w-6 group-hover:mr-2 w-0 m-0"
+                  } transition-all h-6`}
+                  fill="currentColor"
+                  viewBox="0 0 512 512"
+                >
+                  <path d="M176 56V96H336V56c0-4.4-3.6-8-8-8H184c-4.4 0-8 3.6-8 8zM128 96V56c0-30.9 25.1-56 56-56H328c30.9 0 56 25.1 56 56V96v32V480H128V128 96zM64 96H96V480H64c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64zM448 480H416V96h32c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64z" />
+                </svg>
                 <span
                   className={`nav-text text-xs font-bold uppercase tracking-widest ${
                     currentPageSection === "experiences"
@@ -85,7 +123,7 @@ const HalfNav = ({ currentScroll }: any) => {
                       : tailwindTextClassesNotCurrent
                   }`}
                 >
-                  Experience
+                  Experiences
                 </span>
               </a>
             </li>
@@ -98,6 +136,18 @@ const HalfNav = ({ currentScroll }: any) => {
                       : tailwindClassesNotCurrent
                   } transition-all  motion-reduce:transition-none`}
                 ></span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`${
+                    currentPageSection === "projects"
+                      ? "w-6 mr-2"
+                      : "group-hover:w-6 group-hover:mr-2 w-0 m-0"
+                  } transition-all h-6`}
+                  fill="currentColor"
+                  viewBox="0 0 512 512"
+                >
+                  <path d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                </svg>
                 <span
                   className={`nav-text text-xs font-bold uppercase tracking-widest ${
                     currentPageSection === "projects"
@@ -111,7 +161,16 @@ const HalfNav = ({ currentScroll }: any) => {
             </li>
           </ul>
         </nav>
+        <a
+          href="https://docs.google.com/document/d/1BMTNUp5SANlbFwqYvqjmKneAzkcsT-bl/edit?usp=sharing&ouid=111157184374471284633&rtpof=true&sd=true"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="cursor-pointer mt-6 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-stone-200 bg-stone-600 hover:bg-stone-200 hover:text-stone-600 transition-colors"
+        >
+          Get Resume
+        </a>
       </div>
+
       <ul className="ml-1 mt-8 flex items-center" aria-label="Social media">
         <li className="mr-5 text-xs">
           <a

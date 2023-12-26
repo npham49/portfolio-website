@@ -13,6 +13,7 @@ const PortableTextComponent = ({ value }: any) => {
           <a
             className="text-stone-100 hover:text-lime-300 transition"
             href={value.href}
+            target="_blank"
             rel={rel}
           >
             {children}
