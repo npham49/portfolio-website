@@ -35,11 +35,11 @@ const Experience = ({ experiences, skills }: any) => {
       <h3 className="text-2xl font-bold tracking-tight text-stone-200 sm:text-3xl lg:hidden">
         Experience
       </h3>
-      <div className="w-full mt-4">
+      <div className="w-full mt-4 group/list">
         {experiences.map((experience: any) => (
           <div
             key={experience._id}
-            className="w-full hover:border-stone-600 hover:border hover:bg-stone-900 hover:p-[7px] p-2 rounded-md"
+            className="group w-full hover:border-stone-600 hover:border hover:bg-stone-900 hover:p-[7px] p-2 rounded-md lg:hover:!opacity-100 lg:group-hover/list:opacity-50 transition-opacity"
           >
             <div className="flex items-start justify-between">
               <div className="w-1/3 pr-2 text-sm text-stone-400">
