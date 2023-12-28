@@ -1,6 +1,7 @@
 "use client";
 import { useContext, useEffect, useRef, useState } from "react";
 import { CurrentSectionContext } from "@/context/currentSection";
+import Modal from "./common/Modal";
 
 const tailwindClassesCurrent = " w-14 bg-stone-200";
 const tailwindClassesNotCurrent =
@@ -11,6 +12,7 @@ const tailwindTextClassesNotCurrent =
   "text-stone-500 group-hover:text-stone-200 group-focus-visible:text-stone-200";
 
 const HalfNav = ({ currentScroll }: any) => {
+  const [showModal, setShowModal] = useState(false);
   const [currentPageSection, setCurrentPageSection] = useState("about");
   const ref = useRef<HTMLDivElement>(null);
   // @ts-ignore
@@ -51,6 +53,7 @@ const HalfNav = ({ currentScroll }: any) => {
       ref={ref}
       className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24"
     >
+      <Modal showModal={showModal} setShowModal={setShowModal} />
       <div>
         <h1 className="text-4xl font-bold tracking-tight text-stone-200 sm:text-5xl">
           <a href="/">Dinh Nguyen (Brian) Pham</a>
@@ -61,6 +64,20 @@ const HalfNav = ({ currentScroll }: any) => {
         <p className="mt-2 max-w-xs leading-normal">
           Developed and maintained diverse projects in tech innovation.
         </p>
+        <a
+          href="https://docs.google.com/document/d/1BMTNUp5SANlbFwqYvqjmKneAzkcsT-bl/edit?usp=sharing&ouid=111157184374471284633&rtpof=true&sd=true"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="cursor-pointer mt-6 mr-2 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-stone-200 bg-stone-600 hover:bg-stone-200 hover:text-stone-600 transition-colors"
+        >
+          Get Resume
+        </a>
+        <button
+          onClick={() => setShowModal(true)}
+          className="cursor-pointer mt-6 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-stone-200 bg-stone-600 hover:bg-stone-200 hover:text-stone-600 transition-colors"
+        >
+          Contact Me
+        </button>
         <nav className="nav hidden lg:block" aria-label="In-page jump links">
           <ul className="mt-16 w-max">
             <li>
@@ -161,14 +178,6 @@ const HalfNav = ({ currentScroll }: any) => {
             </li>
           </ul>
         </nav>
-        <a
-          href="https://docs.google.com/document/d/1BMTNUp5SANlbFwqYvqjmKneAzkcsT-bl/edit?usp=sharing&ouid=111157184374471284633&rtpof=true&sd=true"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="cursor-pointer mt-6 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-stone-200 bg-stone-600 hover:bg-stone-200 hover:text-stone-600 transition-colors"
-        >
-          Get Resume
-        </a>
       </div>
 
       <ul className="ml-1 mt-8 flex items-center" aria-label="Social media">

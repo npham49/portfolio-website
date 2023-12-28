@@ -15,6 +15,11 @@ export default {
       of: [{type: 'block'}],
     },
     {
+      title: 'Short Description',
+      name: 'shortDescription',
+      type: 'string',
+    },
+    {
       title: 'Skills',
       name: 'skills',
       type: 'array',

@@ -4,9 +4,12 @@ import HalfNav from "./HalfNav";
 import BottomNav from "./BottomNav";
 import About from "./About";
 import Experience from "./Experience";
+import Project from "./Project";
+import Created from "./Created";
 import { CurrentSectionContext } from "@/context/currentSection";
+import MouseTracker from "./MouseTracker";
 
-const Home = ({ about, experiences, skills }: any) => {
+const Home = ({ about, experiences, skills, projects }: any) => {
   const [currentSection, setCurrentSection] = React.useState({
     contact: 0,
     about: 0,
@@ -37,6 +40,8 @@ const Home = ({ about, experiences, skills }: any) => {
         <div className="pt-24 lg:w-1/2 lg:py-24 mb-16 lg:mb-0">
           <About about={about} />
           <Experience experiences={experiences} skills={skills} />
+          <Project projects={projects} skills={skills} />
+          <Created />
         </div>
       </div>
     </CurrentSectionContext.Provider>

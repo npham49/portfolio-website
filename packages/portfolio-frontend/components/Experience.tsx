@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useContext } from "react";
 import PortableTextComponent from "./common/PortableText";
+import SkillLinks from "./common/SkillLinks";
 import { CurrentSectionContext } from "@/context/currentSection";
 
 const Experience = ({ experiences, skills }: any) => {
@@ -22,7 +23,6 @@ const Experience = ({ experiences, skills }: any) => {
   // @ts-ignore
   const { setCurrentSection } = useContext(CurrentSectionContext);
   React.useEffect(() => {
-    console.log(ref.current?.clientHeight);
     if (ref.current?.clientHeight) {
       setCurrentSection((prev: any) => ({
         ...prev,
@@ -62,21 +62,11 @@ const Experience = ({ experiences, skills }: any) => {
                   <PortableTextComponent value={experience.description} />
                   <div>
                     {experience.skills.map((skill: any) => (
-                      <a
+                      <SkillLinks
+                        skill={skill}
+                        skills={skills}
                         key={skill._key}
-                        href={
-                          skills.find((s: any) => s._id === skill._ref).skillUrl
-                        }
-                        target="_blank"
-                        rel="noreferrer noopener"
-                      >
-                        <span className="inline-block px-3 py-1 mr-2 mt-2 text-xs font-medium leading-5 text-stone-100 bg-stone-600 rounded-full hover:bg-stone-100 hover:text-stone-600 transition">
-                          {
-                            skills.find((s: any) => s._id === skill._ref)
-                              .skillName
-                          }
-                        </span>
-                      </a>
+                      />
                     ))}
                   </div>
                 </div>
