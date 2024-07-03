@@ -29,7 +29,7 @@ const MouseTracker = ({ children }: any) => {
   }, []);
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"
+      className="pointer-events-none fixed inset-0 z-30 transition duration-300"
       style={{
         background: `radial-gradient(600px at ${localMousePos.x}px ${localMousePos.y}px, rgba(120, 113, 108, 0.15), transparent 80%)`,
       }}

@@ -11,7 +11,6 @@ export default async function HomePage() {
   const projects = await client.fetch(
     `*[_type == "project"]| order(_updatedAt desc)`,
   );
-  console.log(projects);
   return (
     <main className="bg-stone-950 bg-fixed">
       <div className="group/spotlight relative">

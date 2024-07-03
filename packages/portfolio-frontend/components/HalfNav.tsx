@@ -62,7 +62,8 @@ const HalfNav = ({ currentScroll }: any) => {
           Full Stack Developer
         </h2>
         <p className="mt-2 max-w-xs leading-normal">
-          Developed and maintained diverse projects in tech innovation.
+          2 years of experience in developing secure, diverse, and accessible
+          web applications.
         </p>
         <a
           href="https://docs.google.com/document/d/1BMTNUp5SANlbFwqYvqjmKneAzkcsT-bl/edit?usp=sharing&ouid=111157184374471284633&rtpof=true&sd=true"

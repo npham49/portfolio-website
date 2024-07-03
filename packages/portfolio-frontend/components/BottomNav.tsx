@@ -39,7 +39,6 @@ const BottomNav = ({ currentScroll }: any) => {
         setCurrentPageSection("projects");
         break;
     }
-    console.log(currentPageSection, currentScroll, currentSection);
   }, [currentScroll]);
   return (
     <div className=" w-5/6 lg:hidden fixed z-50 h-16 max-w-lg -translate-x-1/2 bg-stone-800 border border-stone-400 rounded-full bottom-4 left-1/2">
