@@ -1,17 +1,44 @@
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
+# Go specific
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/vendor/
 
-# Dependency directories
-/.pnp
-.pnp.js
+# Go workspace file
+go.work
 
-# Optional npm cache directory
-.npm
+# templ generated files
+*_templ.go
 
-# Optional eslint cache
-.eslintcache
+# IDE specific
+.idea/
+*.swp
+*.swo
 
-# Build output
-/dist
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Binary output directory
+/bin/
+/dist/
+
+# Environment variables
+.env
+.env.local
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
