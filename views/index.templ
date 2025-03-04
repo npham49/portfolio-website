@@ -1,0 +1,9 @@
+package views
+
+import "portfolio-site/views/layouts"
+
+templ Hello(name string) {
+	@layouts.Base() {
+		<h1 class="text-xl text-violet-800">Hello, { name }</h1>
+	}
+}

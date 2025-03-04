@@ -1,0 +1,100 @@
+package views
+
+import "portfolio-site/views/layouts"
+
+templ About() {
+	@layouts.Base() {
+		<!-- Main Content -->
+		<div class="md:col-span-3" x-data="{ content: '' }">
+			<div class="bg-white rounded-lg border shadow-sm">
+				<div class="p-6 border-b">
+					<h2 class="text-xl font-semibold">Edit About Section</h2>
+					<p class="text-sm text-gray-500 mt-1">
+						Update your portfolio's about section information
+					</p>
+				</div>
+				<div class="p-6">
+					<form id="aboutForm" class="space-y-8">
+						<!-- Summary Field -->
+						<div class="space-y-2">
+							<label for="summary" class="block font-medium">Summary</label>
+							<input
+								type="text"
+								id="summary"
+								name="summary"
+								class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+								placeholder="A brief summary about yourself"
+								value="Passionate web developer with 5+ years of experience building modern web applications."
+							/>
+							<p class="text-sm text-gray-500">
+								This will appear as a tagline below your name.
+							</p>
+						</div>
+						<!-- Content Field with Tabs -->
+						<div class="space-y-2">
+							<label for="content" class="block font-medium">About Content (Markdown)</label>
+							<!-- Tab Content -->
+							<div class="tab-content active" id="edit-tab">
+								<textarea
+									x-model="content"
+									x-on:change="console.log(marked.parse(content))"
+									id="content"
+									name="content"
+									class="w-full px-3 py-2 border rounded-md font-mono min-h-[300px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Write about yourself using Markdown..."
+								></textarea>
+							</div>
+							<div class="border rounded-md p-4 min-h-[300px] prose" x-html="marked.parse(content)">
+								<!-- Preview content will be inserted here by JavaScript -->
+							</div>
+							<p class="text-sm text-gray-500">
+								Use Markdown to format your content. You can use headings, lists, links, and more.
+							</p>
+						</div>
+						<!-- Photo Upload -->
+						<div class="space-y-4">
+							<label for="photo" class="block font-medium">Profile Photo</label>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+								<div>
+									<input
+										id="photo"
+										type="file"
+										accept="image/*"
+										class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									/>
+									<p class="text-sm text-gray-500 mt-2">
+										Upload a square image for best results. Recommended size: 300x300px.
+									</p>
+								</div>
+								<div class="flex justify-center md:justify-end">
+									<div class="relative w-[150px] h-[150px] rounded-full overflow-hidden border">
+										<img
+											id="photoPreview"
+											src="https://placehold.co/300x300"
+											alt="Profile preview"
+											class="w-full h-full object-cover"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Form Footer -->
+						<div class="pt-6 flex justify-end">
+							<button
+								type="submit"
+								class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+							>
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+									<polyline points="17 21 17 13 7 13 7 21"></polyline>
+									<polyline points="7 3 7 8 15 8"></polyline>
+								</svg>
+								Save Changes
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	}
+}

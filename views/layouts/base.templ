@@ -1,0 +1,21 @@
+package layouts
+
+import "portfolio-site/views/components"
+
+templ Base() {
+	<!DOCTYPE html>
+	<html lang="en">
+		@components.Header()
+		<body>
+			{ children... }
+		</body>
+		@components.Footer()
+	</html>
+	<script>
+        function reloadPage() {
+                setTimeout(function() {
+            window.location.reload();
+        }, 2000);
+        }
+    </script>
+}

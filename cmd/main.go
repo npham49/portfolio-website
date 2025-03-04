@@ -16,6 +16,8 @@ func main() {
 
 	r := gin.Default()
 
+	routes.TemplateRoutes(r)
+
 	// Todo Routes
 	routes.AboutRoutes(r)
 
